@@ -1,8 +1,16 @@
 #!/bin/bash
-set -e
 
-python manage.py makemigrations
-python manage.py migrate
-python manage.py runserver 0.0.0.0:8000
+if [ "$1" == "django" ]; then
 
-exec "$@"
+  until pg_isready -h db -p 5432 -U ${DB_USER}; do
+      echo "Waiting for PostgreSQL to fully initialize..."
+      sleep 5
+  done
+
+  set -e
+  
+  python manage.py makemigrations
+  python manage.py migrate
+  python manage.py runserver 0.0.0.0:8000
+
+fi

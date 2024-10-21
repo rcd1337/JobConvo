@@ -1,5 +1,6 @@
 services:
   django:
+    container_name: "django"
     build: .
     volumes:
       - .:/app
@@ -8,9 +9,10 @@ services:
     depends_on:
       - db
     env_file:
-      - ./.env.dev
-    entrypoint: ./docker-entrypoint.sh
+      - ./.env
+    entrypoint: ./docker-entrypoint.sh django
   db:
+    container_name: "postgres"
     image: postgres:16
     environment:
       POSTGRES_DB: ${DB_NAME}
