@@ -8,8 +8,9 @@ if [ "$1" == "django" ]; then
   done
 
   set -e
+  shift
+  exec "$@"
   
-  python manage.py makemigrations
   python manage.py migrate
   python manage.py runserver 0.0.0.0:8000
 

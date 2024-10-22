@@ -16,3 +16,4 @@ RUN chmod +x docker-entrypoint.sh
 COPY . .
 
 EXPOSE 8000
+EXPOSE 5432
