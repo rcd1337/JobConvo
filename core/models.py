@@ -1,12 +1,8 @@
-from django.contrib.auth.models import AbstractUser
 from django.db import models
+from accounts.models import Account
 
 
 # Choices
-class Role(models.TextChoices):
-    RECRUITER = "recruiter", "Recruiter"
-    APPLICANT = "applicant", "Candidato"
-
 class SalaryRangeChoices(models.TextChoices):
     UP_TO_1000 = "up_to_1000", "Up to 1000"
     FROM_1001_TO_2000 = "from_1001_to_2000", "From 1001 to 2000"
@@ -23,25 +19,7 @@ class EducationChoices(models.TextChoices):
 
 
 # Models
-class Account(AbstractUser):
-
-    base_role = Role.APPLICANT
-
-    role = models.CharField(
-        max_length=64,
-        choices=Role.choices,
-        default=Role.APPLICANT,
-        null=False,
-        blank=False,
-    )
-    created_at = models.DateTimeField(null=False, blank=True, auto_now_add=True)
-    updated_at = models.DateTimeField(null=False, blank=True, auto_now=True)
-
-    def __str__(self):
-        return self.username
-
-
-class JobListnig(models.Model):
+class JobListing(models.Model):
 
     title = models.CharField(
         max_length=128,
@@ -52,11 +30,17 @@ class JobListnig(models.Model):
         null=False,
         blank=False,
     )
-    education = models.CharField(
+    min_educational_level = models.CharField(
         max_length=64,
         choices=EducationChoices.choices,
         null=False,
         blank=False,
+    )
+    salary_range = models.CharField(
+        max_length=64,
+        choices=SalaryRangeChoices.choices,
+        null=False,
+        blank=False
     )
     created_at = models.DateTimeField(null=False, blank=True, auto_now_add=True)
     updated_at = models.DateTimeField(null=False, blank=True, auto_now=True)
@@ -74,9 +58,9 @@ class Applicant(models.Model):
         null=False,
         blank=False,
     )
-    salary_expectation = models.DecimalField(
-        max_digits=12,
-        decimal_places=2,
+    salary_expectation = models.CharField(
+        max_length=64,
+        choices=SalaryRangeChoices.choices,
         null=False,
         blank=False
     )
@@ -95,3 +79,27 @@ class Applicant(models.Model):
     
     def __str__(self):
         return self.account.username
+    
+
+class JobListingApplication(models.Model):
+    applicant = models.ForeignKey(
+        Applicant,
+        on_delete=models.SET_NULL,
+        related_name="applications",
+        null=True,
+        blank=False,
+    )    
+    job_listing = models.ForeignKey(
+        JobListing,
+        on_delete=models.CASCADE,
+        related_name="applications",
+        null=False,
+        blank=False,
+    )
+    applicant_ranking = ()
+    created_at = models.DateTimeField(null=False, blank=True, auto_now_add=True)
+    updated_at = models.DateTimeField(null=False, blank=True, auto_now=True)
+    
+    def __str__(self):
+        return f"{self.applicant} applied to {self.job_listing}"
+    
