@@ -2,8 +2,14 @@ from datetime import datetime
 from rest_framework import viewsets, mixins, generics, status
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from rest_framework.exceptions import ValidationError
+from rest_framework.exceptions import ValidationError, APIException
 from rest_framework.decorators import action
+from core.utils import count_montly_entries
+from core.models import (
+    JobListing,
+    JobListingApplication,
+    Applicant
+)
 from .permissions import IsRecruiter, IsApplicant
 from .serializers import (
     JobListingSerializer,
@@ -11,11 +17,6 @@ from .serializers import (
     JobListingRetrieveSerializer,
     ReportSerializer,
     ApplicantSerializer
-)
-from core.models import (
-    JobListing,
-    JobListingApplication,
-    Applicant
 )
 
 
@@ -39,7 +40,7 @@ class JobListingViewSet(viewsets.ModelViewSet):
         return JobListingSerializer
     
     
-    # Enables applicants to apply for a job listing
+    # Enable applicants to apply for a job listing
     @action(
         detail=True,
         permission_classes=[IsApplicant],
@@ -50,18 +51,17 @@ class JobListingViewSet(viewsets.ModelViewSet):
         applicant = getattr(self.request.user, "applicant", None)
         job_listing = self.get_object()
         data = request.data
-        
-        # Provides aditional data to the serializer
+
         data.update({
             "applicant": applicant.id,
             "job_listing":job_listing.id,
         })
         
-        # Validates if user account has it's applicant profile information
+        # Validate if user account has it's applicant profile information
         if not applicant:
             raise ValidationError("You can not perform this action because your applicant profile doesn't exist.")
         
-        # Validates if user has already applied for this job listing
+        # Validate if user has already applied for this job listing
         if job_listing.applications.filter(applicant=applicant).exists():
             raise ValidationError("You have already applied for this job listing.")
         
@@ -81,19 +81,17 @@ class ApplicantViewSet(
     mixins.UpdateModelMixin
 ):
     queryset = Applicant
-    permission_classes = [IsApplicant]
     serializer_class = ApplicantSerializer
     
     def perform_create(self, serializer):
         user = self.request.user
-        # Validates user has no applicant profile associated to his account yet
+        # Validate user has no applicant profile associated to his account yet
         if hasattr(user, "applicant"):
             raise ValidationError("You can not create an applicant profile because your account already has one")
         return serializer.save(account=user)
-        
     
     def perform_update(self, serializer):
-        # Validates applicant profile is being update by the right user account
+        # Validate applicant profile is being update by the right user account
         if not self.request.user == serializer.instance.account:
             raise ValidationError("You are not allowed to perfom this action")
         return super().perform_update(serializer)
@@ -101,29 +99,32 @@ class ApplicantViewSet(
 
 class ReportViewSet(generics.GenericAPIView):
     serializer_class = ReportSerializer
+    permission_classes = [AllowAny]
     
     def get(self, request, *args, **kwargs):
-        year = request.query_params.get("year", datetime.now().year)
-        month = request.query_params.get("month", datetime.now().year)
+        year = request.query_params.get("year")
+        month = request.query_params.get("month")
         
-        # @TODO validador year/month
-        # @TODO separar count numa função
-        # @TODO utilizar django filters
+        if not year and not month:
+            year = datetime.now().year
+            month = datetime.now().month
         
-        if year and month:
-            job_listings_count = JobListing.objects.filter(
-                created_at__year=year,
-                created_at__month=month
-            ).count()
-            
-            applications_count = JobListingApplication.objects.filter(
-                created_at__year=year,
-                created_at__month=month
-            ).count()
+        # Validate both variables were informed in the request
+        if not year or not month:
+            raise APIException("You must inform year and month, e.g.: ...report/?year=2000&?month=11")
+
+        # Validate year and month
+        try:
+            datetime(int(year), int(month), 1)
+        except ValueError:
+            raise APIException("Invalid date. Please provide a valid year(e.g.: 2000) and month (1-12).")
+        
+        job_listings_count = count_montly_entries(model=JobListing, year=year, month=month),
+        applications_count = count_montly_entries(model=JobListingApplication, year=year, month=month)
         
         data = {
             "job_listings_amount": job_listings_count,
-            "applications_amount":applications_count
+            "applications_amount": applications_count
         }
 
         serializer = self.get_serializer(data)
