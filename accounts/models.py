@@ -16,9 +16,8 @@ class Account(AbstractUser):
     role = models.CharField(
         max_length=64,
         choices=Role.choices,
-        default=Role.APPLICANT,
-        null=False,
-        blank=False,
+        null=True,
+        blank=True,
     )
     created_at = models.DateTimeField(null=False, blank=True, auto_now_add=True)
     updated_at = models.DateTimeField(null=False, blank=True, auto_now=True)
