@@ -1,14 +1,10 @@
+from datetime import datetime
 from rest_framework import viewsets, mixins, generics, status
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
 from rest_framework.decorators import action
-from datetime import datetime
-from core.models import (
-    JobListing,
-    JobListingApplication,
-    Applicant
-)
+from .permissions import IsRecruiter, IsApplicant
 from .serializers import (
     JobListingSerializer,
     JobListingApplicationSerializer,
@@ -16,13 +12,24 @@ from .serializers import (
     ReportSerializer,
     ApplicantSerializer
 )
+from core.models import (
+    JobListing,
+    JobListingApplication,
+    Applicant
+)
 
 
-# @TODO permissions
-# @TODO implement swagger
 class JobListingViewSet(viewsets.ModelViewSet):
     queryset = JobListing.objects.all()
-    permission_classes = [AllowAny]
+    
+    def get_permissions(self):
+        if self.action in ["create", "update", "partial_update", "destroy"]:
+            permission_classes = [IsRecruiter]
+        elif self.action in ["apply_to_job"]:
+            permission_classes = [IsApplicant]
+        else:
+            permission_classes = [AllowAny]
+        return [permission() for permission in permission_classes]
     
     def get_serializer_class(self):
         if self.action == 'retrieve':
@@ -35,7 +42,7 @@ class JobListingViewSet(viewsets.ModelViewSet):
     # Enables applicants to apply for a job listing
     @action(
         detail=True,
-        permission_classes=permission_classes,
+        permission_classes=[IsApplicant],
         methods=["POST"],
         url_path="apply_to_job"
     )
@@ -74,7 +81,7 @@ class ApplicantViewSet(
     mixins.UpdateModelMixin
 ):
     queryset = Applicant
-    permission_classes = [AllowAny]
+    permission_classes = [IsApplicant]
     serializer_class = ApplicantSerializer
     
     def perform_create(self, serializer):
