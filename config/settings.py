@@ -42,10 +42,11 @@ INSTALLED_APPS = [
     # DRF
     'rest_framework',
     'rest_framework_simplejwt',
+    'drf_yasg',
     # Apps
     'core',
     'accounts',
-]
+    ]
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
