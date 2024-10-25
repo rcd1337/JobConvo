@@ -1,5 +1,10 @@
 from django.db.models import TextChoices
 
+
+class Role(TextChoices):
+    RECRUITER = "recruiter", "Recruiter"
+    APPLICANT = "applicant", "Applicant"
+
 class EducationChoices(TextChoices):
     ELEMENTARY = "elementary", "Ensino Fundamental"
     HIGH_SCHOOL = "high_school", "Ensino médio"

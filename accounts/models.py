@@ -1,12 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-
-
-# Choices
-class Role(models.TextChoices):
-    RECRUITER = "recruiter", "Recruiter"
-    APPLICANT = "applicant", "Applicant"
-
+from core.constants import Role
 
 # Models
 class Account(AbstractUser):
@@ -23,4 +17,4 @@ class Account(AbstractUser):
     updated_at = models.DateTimeField(null=False, blank=True, auto_now=True)
 
     def __str__(self):
-        return self.username
+        return f"({self.id}) {self.username}"

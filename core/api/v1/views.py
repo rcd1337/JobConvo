@@ -8,7 +8,6 @@ from core.utils import count_montly_entries
 from core.models import (
     JobListing,
     JobListingApplication,
-    Applicant
 )
 from .permissions import IsRecruiter, IsApplicant
 from .serializers import (
@@ -16,7 +15,6 @@ from .serializers import (
     JobListingApplicationSerializer,
     JobListingRetrieveSerializer,
     ReportSerializer,
-    ApplicantSerializer
 )
 
 
@@ -39,7 +37,6 @@ class JobListingViewSet(viewsets.ModelViewSet):
            return JobListingApplicationSerializer
         return JobListingSerializer
     
-    
     # Enable applicants to apply for a job listing
     @action(
         detail=True,
@@ -48,7 +45,7 @@ class JobListingViewSet(viewsets.ModelViewSet):
         url_path="apply_to_job"
     )
     def apply_to_job(self, request, **kwargs):
-        applicant = getattr(self.request.user, "applicant", None)
+        applicant = self.request.user # @TODO por que self.request e não request.user direto
         job_listing = self.get_object()
         data = request.data
 
@@ -73,28 +70,6 @@ class JobListingViewSet(viewsets.ModelViewSet):
             {"detail": "You have successfully applied for this job."},
             status=status.HTTP_200_OK
         )
-
-
-class ApplicantViewSet(
-    viewsets.GenericViewSet,
-    mixins.CreateModelMixin,
-    mixins.UpdateModelMixin
-):
-    queryset = Applicant
-    serializer_class = ApplicantSerializer
-    
-    def perform_create(self, serializer):
-        user = self.request.user
-        # Validate user has no applicant profile associated to his account yet
-        if hasattr(user, "applicant"):
-            raise ValidationError("You can not create an applicant profile because your account already has one")
-        return serializer.save(account=user)
-    
-    def perform_update(self, serializer):
-        # Validate applicant profile is being update by the right user account
-        if not self.request.user == serializer.instance.account:
-            raise ValidationError("You are not allowed to perfom this action")
-        return super().perform_update(serializer)
 
 
 class ReportViewSet(generics.GenericAPIView):

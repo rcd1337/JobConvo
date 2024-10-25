@@ -1,36 +1,38 @@
 from rest_framework import serializers
-from core.models import Account, Applicant, JobListing, JobListingApplication
+from core.models import ApplicantProfile, JobListing, JobListingApplication
+from accounts.models import Account
 
 
-class AccountSerializer(serializers.ModelSerializer):
+# class AccountSerializer(serializers.ModelSerializer):
 
-    class Meta:
-        model = Account
-        fields = [
-            "id",
-            "username",
-            "first_name",
-            "last_name",
-            "email",
-            "role",
-        ]
+#     class Meta:
+#         model = Account
+#         fields = [
+#             "id",
+#             "username",
+#             "first_name",
+#             "last_name",
+#             "email",
+#             "role",
+#         ]
+#         read_only_fields = [*fields]
 
 
-class ApplicantSerializer(serializers.ModelSerializer):
-    account = AccountSerializer(required=False, read_only=True)
+# class ApplicantProfileSerializer(serializers.ModelSerializer):
+#     account = AccountSerializer(required=False, read_only=True)
     
-    def create(self, validated_data):
-        return super().create(validated_data)
+#     def create(self, validated_data):
+#         return super().create(validated_data)
     
-    class Meta:
-        model = Applicant
-        fields = [
-            "id",
-            "account",
-            "salary_range_expectation",
-            "experience",
-            "educational_level",
-        ]
+#     class Meta:
+#         model = ApplicantProfile
+#         fields = [
+#             "id",
+#             "account",
+#             "salary_range_expectation",
+#             "experience",
+#             "educational_level",
+#         ]
 
 
 class JobListingSerializer(serializers.ModelSerializer):
@@ -68,7 +70,7 @@ class JobListingApplicationSerializer(serializers.ModelSerializer):
 
 
 class JobListingRetrieveSerializer(serializers.ModelSerializer):
-    applicants = JobListingApplicationSerializer(source='applications', many=True, read_only=True)
+    applicants = JobListingApplicationSerializer(source='applications', many=True, read_only=True) # @TODO verificar 'applications' 
     
     class Meta:
         model = JobListing

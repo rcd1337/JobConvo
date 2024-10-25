@@ -1,5 +1,5 @@
 from rest_framework.permissions import BasePermission
-from accounts.models import Role
+from core.constants import Role
 
 # Custom permission classes
 class IsRecruiter(BasePermission):
