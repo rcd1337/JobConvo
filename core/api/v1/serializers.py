@@ -3,38 +3,6 @@ from core.models import ApplicantProfile, JobListing, JobListingApplication
 from accounts.models import Account
 
 
-# class AccountSerializer(serializers.ModelSerializer):
-
-#     class Meta:
-#         model = Account
-#         fields = [
-#             "id",
-#             "username",
-#             "first_name",
-#             "last_name",
-#             "email",
-#             "role",
-#         ]
-#         read_only_fields = [*fields]
-
-
-# class ApplicantProfileSerializer(serializers.ModelSerializer):
-#     account = AccountSerializer(required=False, read_only=True)
-    
-#     def create(self, validated_data):
-#         return super().create(validated_data)
-    
-#     class Meta:
-#         model = ApplicantProfile
-#         fields = [
-#             "id",
-#             "account",
-#             "salary_range_expectation",
-#             "experience",
-#             "educational_level",
-#         ]
-
-
 class JobListingSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):

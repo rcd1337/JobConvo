@@ -1,6 +1,6 @@
 from datetime import datetime
-from rest_framework import viewsets, mixins, generics, status
-from rest_framework.permissions import AllowAny
+from rest_framework import viewsets, generics, status
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError, APIException
 from rest_framework.decorators import action
@@ -27,7 +27,7 @@ class JobListingViewSet(viewsets.ModelViewSet):
         elif self.action in ["apply_to_job"]:
             permission_classes = [IsApplicant]
         else:
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
     
     def get_serializer_class(self):
@@ -45,7 +45,7 @@ class JobListingViewSet(viewsets.ModelViewSet):
         url_path="apply_to_job"
     )
     def apply_to_job(self, request, **kwargs):
-        applicant = self.request.user # @TODO por que self.request e não request.user direto
+        applicant = request.user
         job_listing = self.get_object()
         data = request.data
 
@@ -55,8 +55,8 @@ class JobListingViewSet(viewsets.ModelViewSet):
         })
         
         # Validate if user account has it's applicant profile information
-        if not applicant:
-            raise ValidationError("You can not perform this action because your applicant profile doesn't exist.")
+        if not hasattr(applicant, "applicant_profile"):
+            raise ValidationError("Your account can not perform this action. Applicant profile is missing")
         
         # Validate if user has already applied for this job listing
         if job_listing.applications.filter(applicant=applicant).exists():
@@ -74,7 +74,7 @@ class JobListingViewSet(viewsets.ModelViewSet):
 
 class ReportViewSet(generics.GenericAPIView):
     serializer_class = ReportSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     
     def get(self, request, *args, **kwargs):
         year = request.query_params.get("year")
