@@ -4,7 +4,6 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError, APIException
 from rest_framework.decorators import action
-from core.utils import count_montly_entries
 from core.models import (
     JobListing,
     JobListingApplication,

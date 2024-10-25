@@ -1,0 +1,19 @@
+.navContainer {
+    position: fixed;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+.nav {
+    max-width: fit-content;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    font-size: 25px;
+}
+
+.nav > * {
+    cursor: pointer;
+    margin-left: 10px;
+}

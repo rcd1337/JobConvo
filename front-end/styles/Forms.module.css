@@ -1,0 +1,28 @@
+.page {
+    width: 100vw;
+    height: 100vh;
+}
+
+.login {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    display: flex;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+.fields {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.button {
+    margin: 5px
+}
