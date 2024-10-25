@@ -60,7 +60,7 @@ class JobListingRetrieveSerializer(serializers.ModelSerializer):
             "title",
             "requirements",
             "min_educational_level",
-            "recruiter"
+            "recruiter",
             "created_at",
             "updated_at",
             "applicants"

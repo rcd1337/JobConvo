@@ -101,8 +101,11 @@ class ReportViewSet(generics.GenericAPIView):
         except ValueError:
             raise APIException("Invalid date. Please provide a valid year(e.g.: 2000) and month (1-12).")
         
-        job_listings_count = count_montly_entries(model=JobListing, year=year, month=month),
-        applications_count = count_montly_entries(model=JobListingApplication, year=year, month=month)
+        # job_listings_count = count_montly_entries(model=JobListing, year=year, month=month),
+        # applications_count = count_montly_entries(model=JobListingApplication, year=year, month=month)
+        
+        job_listings_count = JobListing.objects.filter(created_at__year=year, created_at__month=month).count()
+        applications_count = JobListingApplication.objects.filter(created_at__year=year, created_at__month=month).count()
         
         data = {
             "job_listings_amount": job_listings_count,
