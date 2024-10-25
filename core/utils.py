@@ -55,7 +55,7 @@ def calculate_applicant_ranking(
     job_listing_education_value = min_educational_level.get(job_listing_min_educational_level)
     job_listing_salary_value = salary_range_dict.get(job_listing_salary_range)
     ranking = 0
-    if applicant_education_value <= job_listing_education_value:
+    if applicant_education_value >= job_listing_education_value:
         ranking +=1
     if applicant_salary_value <= job_listing_salary_value:
         ranking += 1

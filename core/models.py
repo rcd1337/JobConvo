@@ -70,7 +70,7 @@ class ApplicantProfile(models.Model):
     updated_at = models.DateTimeField(null=False, blank=True, auto_now=True)
     
     def __str__(self):
-        return f"({self.id}) {self.account.username}"
+        return f"({self.id}) {self.account.email}"
 
 
 class RecruiterProfile(models.Model):
@@ -91,7 +91,7 @@ class RecruiterProfile(models.Model):
     updated_at = models.DateTimeField(null=False, blank=True, auto_now=True)
     
     def __str__(self):
-        return f"({self.id}) {self.account.username}"
+        return f"({self.id}) {self.account.email}"
 
 
 class JobListingApplication(models.Model):
@@ -126,4 +126,4 @@ class JobListingApplication(models.Model):
         return super().save(*args, **kwargs)
         
     def __str__(self):
-        return f"({self.id}) {self.applicant.username} applied to {self.job_listing.title}"
+        return f"({self.id}) {self.applicant.email} applied to {self.job_listing.title}"
