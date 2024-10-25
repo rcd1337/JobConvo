@@ -1,0 +1,617 @@
+[
+    {
+        "model": "accounts.account",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$720000$uUx7MUELIK35ED5Nt0kmK7$HitRGUj9FvPM7NooVjYniA4CeEZQzJG/ZJu5UBWMdFU=",
+            "last_login": null,
+            "is_superuser": true,
+            "first_name": "",
+            "last_name": "",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-10-25T07:31:41.751Z",
+            "email": "admin",
+            "username": null,
+            "role": null,
+            "created_at": "2024-10-25T07:31:41.938Z",
+            "updated_at": "2024-10-25T07:31:41.938Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.account",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$720000$YVH6lGj08QJ0Oa50iWDuNf$Aip3DtidFOisO/W3NOrbOugs+QR1kFktnLXXdj9gOQI=",
+            "last_login": null,
+            "is_superuser": false,
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-10-25T07:31:41.953Z",
+            "email": "user2@teste.com",
+            "username": null,
+            "role": "recruiter",
+            "created_at": "2024-10-25T07:31:42.145Z",
+            "updated_at": "2024-10-25T07:31:42.145Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.account",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$720000$p0lSXVPqw2Qrf6mwKBCUa6$gYL/kQqXGXqvRJ+BoyhIqXVSfPJuedYYkED+BROmbzU=",
+            "last_login": null,
+            "is_superuser": false,
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-10-25T07:31:42.153Z",
+            "email": "user3@teste.com",
+            "username": null,
+            "role": "recruiter",
+            "created_at": "2024-10-25T07:31:42.345Z",
+            "updated_at": "2024-10-25T07:31:42.345Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.account",
+        "pk": 4,
+        "fields": {
+            "password": "pbkdf2_sha256$720000$iSho5QYK9b2Nm76O317hg7$TySS8f6/A+Of9xy8cCLlCTg0rSWkXJksDCyA2dPBvEQ=",
+            "last_login": null,
+            "is_superuser": false,
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-10-25T07:31:42.354Z",
+            "email": "user4@teste.com",
+            "username": null,
+            "role": "applicant",
+            "created_at": "2024-10-25T07:31:42.538Z",
+            "updated_at": "2024-10-25T07:31:42.538Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.account",
+        "pk": 5,
+        "fields": {
+            "password": "pbkdf2_sha256$720000$F758DTqZFtDegHditjbRB5$OYyr9WMDShMgj0+W+diGiKvtk34TTo3XXivuuomWA0Q=",
+            "last_login": null,
+            "is_superuser": false,
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-10-25T07:31:42.547Z",
+            "email": "user5@teste.com",
+            "username": null,
+            "role": "applicant",
+            "created_at": "2024-10-25T07:31:42.731Z",
+            "updated_at": "2024-10-25T07:31:42.731Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.account",
+        "pk": 6,
+        "fields": {
+            "password": "pbkdf2_sha256$720000$5jC4AnqKyMHdjAQ1aVzN0c$yHAXqwTLf30zwzi2AEEOBdy1V6UBdU2slXtZPV6p1eg=",
+            "last_login": null,
+            "is_superuser": false,
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-10-25T07:31:42.740Z",
+            "email": "user6@teste.com",
+            "username": null,
+            "role": "applicant",
+            "created_at": "2024-10-25T07:31:42.927Z",
+            "updated_at": "2024-10-25T07:31:42.927Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.account",
+        "pk": 7,
+        "fields": {
+            "password": "pbkdf2_sha256$720000$wohI6raPvT79AzeZ8Qvben$+GurMVgUEUHimdoNzAmSiElcmbHjWw2pemaicAm0pRo=",
+            "last_login": null,
+            "is_superuser": false,
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-10-25T07:31:42.936Z",
+            "email": "user7@teste.com",
+            "username": null,
+            "role": "applicant",
+            "created_at": "2024-10-25T07:31:43.130Z",
+            "updated_at": "2024-10-25T07:31:43.130Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.account",
+        "pk": 8,
+        "fields": {
+            "password": "pbkdf2_sha256$720000$4EPfMsfvOsgMaKYnxRBPkQ$ImAPmMg4vb54HNDO5GqUzGLADFznOfEAqh3YxtrKkkU=",
+            "last_login": null,
+            "is_superuser": false,
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-10-25T07:31:43.139Z",
+            "email": "user8@teste.com",
+            "username": null,
+            "role": "applicant",
+            "created_at": "2024-10-25T07:31:43.324Z",
+            "updated_at": "2024-10-25T07:31:43.324Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.account",
+        "pk": 9,
+        "fields": {
+            "password": "pbkdf2_sha256$720000$XiphT9KWQ82j2Z7bX0XitR$P0SVvi+DjlWNuEt2AGnGYEdavE7JreUOmQVrobrgKrI=",
+            "last_login": null,
+            "is_superuser": false,
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-10-25T07:31:43.333Z",
+            "email": "user9@teste.com",
+            "username": null,
+            "role": "applicant",
+            "created_at": "2024-10-25T07:31:43.516Z",
+            "updated_at": "2024-10-25T07:31:43.516Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.account",
+        "pk": 10,
+        "fields": {
+            "password": "pbkdf2_sha256$720000$jCwdxGH27FEInsvQ8XWY99$3PEdObSqLegLVw0n58xL0v+PR4WqUNugDBVELIpME9M=",
+            "last_login": null,
+            "is_superuser": false,
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-10-25T07:31:43.526Z",
+            "email": "user10@teste.com",
+            "username": null,
+            "role": "applicant",
+            "created_at": "2024-10-25T07:31:43.709Z",
+            "updated_at": "2024-10-25T07:31:43.709Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.account",
+        "pk": 11,
+        "fields": {
+            "password": "pbkdf2_sha256$720000$JcAZ9pDVZZW7474mWx4wIN$Hfdrd8sJZ2Lexij5e8xVnHDiBAvuW4j2PbglRTfNwyM=",
+            "last_login": null,
+            "is_superuser": false,
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-10-25T07:31:43.718Z",
+            "email": "user11@teste.com",
+            "username": null,
+            "role": "applicant",
+            "created_at": "2024-10-25T07:31:43.904Z",
+            "updated_at": "2024-10-25T07:31:43.904Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.account",
+        "pk": 12,
+        "fields": {
+            "password": "pbkdf2_sha256$720000$fOTgCyGYffs0LXCps6WwUa$k5JZtXta8jcyQ/QnXQcUiZE4GcnX39EaJSLy99xpamo=",
+            "last_login": null,
+            "is_superuser": false,
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-10-25T07:31:43.913Z",
+            "email": "user12@teste.com",
+            "username": null,
+            "role": "applicant",
+            "created_at": "2024-10-25T07:31:44.109Z",
+            "updated_at": "2024-10-25T07:31:44.109Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.account",
+        "pk": 13,
+        "fields": {
+            "password": "pbkdf2_sha256$720000$f8Yj4ADp1jdDD63FKQVfjP$+mWlQlsQujxYnshGL3Cr6Tz9a/rCHR09IxS0q6zkTtc=",
+            "last_login": null,
+            "is_superuser": false,
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-10-25T07:31:44.117Z",
+            "email": "user13@teste.com",
+            "username": null,
+            "role": "applicant",
+            "created_at": "2024-10-25T07:31:44.304Z",
+            "updated_at": "2024-10-25T07:31:44.304Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.account",
+        "pk": 14,
+        "fields": {
+            "password": "pbkdf2_sha256$720000$33yLW8q2YHPEMkonZCWsYr$8oxic0xJ7mCaSBIkS2gss8NpjegAbOJxABjU7tNgVbU=",
+            "last_login": null,
+            "is_superuser": false,
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-10-25T07:31:44.313Z",
+            "email": "user14@teste.com",
+            "username": null,
+            "role": "applicant",
+            "created_at": "2024-10-25T07:31:44.499Z",
+            "updated_at": "2024-10-25T07:31:44.499Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.account",
+        "pk": 15,
+        "fields": {
+            "password": "pbkdf2_sha256$720000$eVFb2qup3gTJlEXNEWf0Et$4STsrE0ChR7voCkvWlZO+bxWV1Jh8d5vvCPQ91E/0pQ=",
+            "last_login": null,
+            "is_superuser": false,
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-10-25T07:31:44.507Z",
+            "email": "user15@teste.com",
+            "username": null,
+            "role": "applicant",
+            "created_at": "2024-10-25T07:31:44.690Z",
+            "updated_at": "2024-10-25T07:31:44.690Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.account",
+        "pk": 16,
+        "fields": {
+            "password": "pbkdf2_sha256$720000$c3d37fS2Byfm7aeDfQvT1k$rfgy58ozUU/DypMPBdHvXEbGWV5QK5LhkM6kmYm5lYs=",
+            "last_login": null,
+            "is_superuser": false,
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-10-25T07:31:44.699Z",
+            "email": "user16@teste.com",
+            "username": null,
+            "role": "applicant",
+            "created_at": "2024-10-25T07:31:44.881Z",
+            "updated_at": "2024-10-25T07:31:44.881Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "core.applicantprofile",
+        "pk": 1,
+        "fields": {
+            "account": 2,
+            "experience": "XP2",
+            "educational_level": "elementary",
+            "salary_range_expectation": "up_to_1000",
+            "created_at": "2024-10-25T07:57:12.769Z",
+            "updated_at": "2024-10-25T07:57:31.475Z"
+        }
+    },
+    {
+        "model": "core.applicantprofile",
+        "pk": 2,
+        "fields": {
+            "account": 3,
+            "experience": "XP3",
+            "educational_level": "high_school",
+            "salary_range_expectation": "from_1001_to_2000",
+            "created_at": "2024-10-25T07:57:45.697Z",
+            "updated_at": "2024-10-25T07:57:45.697Z"
+        }
+    },
+    {
+        "model": "core.applicantprofile",
+        "pk": 3,
+        "fields": {
+            "account": 4,
+            "experience": "XP4",
+            "educational_level": "technologist",
+            "salary_range_expectation": "from_2001_to_3000",
+            "created_at": "2024-10-25T07:57:54.999Z",
+            "updated_at": "2024-10-25T07:57:54.999Z"
+        }
+    },
+    {
+        "model": "core.applicantprofile",
+        "pk": 4,
+        "fields": {
+            "account": 5,
+            "experience": "XP5",
+            "educational_level": "bachelors",
+            "salary_range_expectation": "above_3000",
+            "created_at": "2024-10-25T07:58:06.147Z",
+            "updated_at": "2024-10-25T07:58:06.147Z"
+        }
+    },
+    {
+        "model": "core.applicantprofile",
+        "pk": 5,
+        "fields": {
+            "account": 6,
+            "experience": "XP6",
+            "educational_level": "postgraduate",
+            "salary_range_expectation": "up_to_1000",
+            "created_at": "2024-10-25T07:58:23.421Z",
+            "updated_at": "2024-10-25T07:58:23.421Z"
+        }
+    },
+    {
+        "model": "core.applicantprofile",
+        "pk": 6,
+        "fields": {
+            "account": 7,
+            "experience": "XP7",
+            "educational_level": "doctorate",
+            "salary_range_expectation": "from_1001_to_2000",
+            "created_at": "2024-10-25T07:58:45.993Z",
+            "updated_at": "2024-10-25T07:58:45.993Z"
+        }
+    },
+    {
+        "model": "core.applicantprofile",
+        "pk": 7,
+        "fields": {
+            "account": 8,
+            "experience": "XP8",
+            "educational_level": "elementary",
+            "salary_range_expectation": "above_3000",
+            "created_at": "2024-10-25T07:59:05.575Z",
+            "updated_at": "2024-10-25T07:59:05.575Z"
+        }
+    },
+    {
+        "model": "core.applicantprofile",
+        "pk": 8,
+        "fields": {
+            "account": 9,
+            "experience": "XP9",
+            "educational_level": "high_school",
+            "salary_range_expectation": "above_3000",
+            "created_at": "2024-10-25T07:59:19.760Z",
+            "updated_at": "2024-10-25T07:59:19.760Z"
+        }
+    },
+    {
+        "model": "core.applicantprofile",
+        "pk": 9,
+        "fields": {
+            "account": 10,
+            "experience": "XP10",
+            "educational_level": "technologist",
+            "salary_range_expectation": "above_3000",
+            "created_at": "2024-10-25T07:59:44.042Z",
+            "updated_at": "2024-10-25T07:59:44.042Z"
+        }
+    },
+    {
+        "model": "core.applicantprofile",
+        "pk": 10,
+        "fields": {
+            "account": 11,
+            "experience": "XP11",
+            "educational_level": "bachelors",
+            "salary_range_expectation": "above_3000",
+            "created_at": "2024-10-25T08:00:04.239Z",
+            "updated_at": "2024-10-25T08:00:04.239Z"
+        }
+    },
+    {
+        "model": "core.applicantprofile",
+        "pk": 11,
+        "fields": {
+            "account": 12,
+            "experience": "XP12",
+            "educational_level": "high_school",
+            "salary_range_expectation": "from_1001_to_2000",
+            "created_at": "2024-10-25T08:00:16.493Z",
+            "updated_at": "2024-10-25T08:00:16.493Z"
+        }
+    },
+    {
+        "model": "core.applicantprofile",
+        "pk": 12,
+        "fields": {
+            "account": 13,
+            "experience": "XP13",
+            "educational_level": "doctorate",
+            "salary_range_expectation": "up_to_1000",
+            "created_at": "2024-10-25T08:00:30.449Z",
+            "updated_at": "2024-10-25T08:00:30.449Z"
+        }
+    },
+    {
+        "model": "core.applicantprofile",
+        "pk": 13,
+        "fields": {
+            "account": 14,
+            "experience": "XP14",
+            "educational_level": "postgraduate",
+            "salary_range_expectation": "from_1001_to_2000",
+            "created_at": "2024-10-25T08:00:42.877Z",
+            "updated_at": "2024-10-25T08:00:42.877Z"
+        }
+    },
+    {
+        "model": "core.applicantprofile",
+        "pk": 14,
+        "fields": {
+            "account": 15,
+            "experience": "XP15",
+            "educational_level": "high_school",
+            "salary_range_expectation": "from_2001_to_3000",
+            "created_at": "2024-10-25T08:00:57.966Z",
+            "updated_at": "2024-10-25T08:00:57.966Z"
+        }
+    },
+    {
+        "model": "core.applicantprofile",
+        "pk": 15,
+        "fields": {
+            "account": 16,
+            "experience": "XP16",
+            "educational_level": "doctorate",
+            "salary_range_expectation": "above_3000",
+            "created_at": "2024-10-25T08:01:09.074Z",
+            "updated_at": "2024-10-25T08:01:09.074Z"
+        }
+    },
+    {
+        "model": "core.joblisting",
+        "pk": 1,
+        "fields": {
+            "title": "Job1",
+            "requirements": "Req1",
+            "min_educational_level": "doctorate",
+            "salary_range": "above_3000",
+            "recruiter": 2,
+            "created_at": "2024-10-25T08:01:45.230Z",
+            "updated_at": "2024-10-25T08:01:45.230Z"
+        }
+    },
+    {
+        "model": "core.joblisting",
+        "pk": 2,
+        "fields": {
+            "title": "Job2",
+            "requirements": "Req2",
+            "min_educational_level": "elementary",
+            "salary_range": "up_to_1000",
+            "recruiter": 2,
+            "created_at": "2024-10-25T08:02:03.204Z",
+            "updated_at": "2024-10-25T08:03:50.314Z"
+        }
+    },
+    {
+        "model": "core.joblisting",
+        "pk": 3,
+        "fields": {
+            "title": "Job3",
+            "requirements": "Req3",
+            "min_educational_level": "bachelors",
+            "salary_range": "up_to_1000",
+            "recruiter": 2,
+            "created_at": "2024-10-25T08:02:17.220Z",
+            "updated_at": "2024-10-25T08:03:53.914Z"
+        }
+    },
+    {
+        "model": "core.joblisting",
+        "pk": 4,
+        "fields": {
+            "title": "Job4",
+            "requirements": "Req4",
+            "min_educational_level": "technologist",
+            "salary_range": "from_2001_to_3000",
+            "recruiter": 3,
+            "created_at": "2024-10-25T08:02:33.145Z",
+            "updated_at": "2024-10-25T08:03:57.277Z"
+        }
+    },
+    {
+        "model": "core.joblisting",
+        "pk": 5,
+        "fields": {
+            "title": "Job5",
+            "requirements": "Req5",
+            "min_educational_level": "doctorate",
+            "salary_range": "up_to_1000",
+            "recruiter": 3,
+            "created_at": "2024-10-25T08:03:03.820Z",
+            "updated_at": "2024-10-25T08:04:00.767Z"
+        }
+    },
+    {
+        "model": "core.joblisting",
+        "pk": 6,
+        "fields": {
+            "title": "Job6",
+            "requirements": "Req6",
+            "min_educational_level": "bachelors",
+            "salary_range": "from_2001_to_3000",
+            "recruiter": 3,
+            "created_at": "2024-10-25T08:03:28.351Z",
+            "updated_at": "2024-10-25T08:04:03.363Z"
+        }
+    },
+
+    {
+        "model": "core.recruiterprofile",
+        "pk": 1,
+        "fields": {
+            "account": 2,
+            "company_name": "Company 99",
+            "created_at": "2024-10-25T07:54:14.558Z",
+            "updated_at": "2024-10-25T07:54:14.558Z"
+        }
+    },
+    {
+        "model": "core.recruiterprofile",
+        "pk": 2,
+        "fields": {
+            "account": 3,
+            "company_name": "Company 11",
+            "created_at": "2024-10-25T07:55:18.265Z",
+            "updated_at": "2024-10-25T07:55:18.265Z"
+        }
+    }
+]
