@@ -14,7 +14,7 @@ from .serializers import (
 class CustomTokenObtainPairView(TokenObtainPairView):
     permission_classes = [permissions.AllowAny]
     serializer_class = CustomTokenObtainPairSerializer
-
+    
 
 class ApplicantRegister(generics.CreateAPIView):
     permission_classes = [permissions.AllowAny]

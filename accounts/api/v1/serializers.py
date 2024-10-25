@@ -16,8 +16,6 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 
 class AccountSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(required=True, validators=[UniqueValidator(queryset=Account.objects.all())])
-    email = serializers.EmailField(required=True,validators=[UniqueValidator(queryset=Account.objects.all())])
     password = serializers.CharField(write_only=True, required=True)
     role = serializers.CharField(required=False)
 
@@ -31,9 +29,8 @@ class AccountSerializer(serializers.ModelSerializer):
         model = Account
         fields = [
             "id",
-            "username",
-            "password",
             "email",
+            "password",
             "role",
         ]
 

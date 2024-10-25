@@ -6,14 +6,6 @@ from .utils import calculate_applicant_ranking
 
 # Models
 class JobListing(models.Model):
-    # @TODO recruiter field
-    # recruiter = models.ForeignKey(
-    #     Account,
-    #     on_delete=models.SET_NULL,
-    #     related_name="job_listings",
-    #     null=True,
-    #     blank=False,
-    # )
     title = models.CharField(
         max_length=128,
         null=False,
@@ -34,6 +26,13 @@ class JobListing(models.Model):
         choices=SalaryRangeChoices.choices,
         null=False,
         blank=False
+    )
+    recruiter = models.ForeignKey(
+        Account,
+        on_delete=models.SET_NULL,
+        related_name="job_listings",
+        null=True,
+        blank=False,
     )
     created_at = models.DateTimeField(null=False, blank=True, auto_now_add=True)
     updated_at = models.DateTimeField(null=False, blank=True, auto_now=True)

@@ -1,10 +1,22 @@
 from rest_framework import serializers
-from core.models import ApplicantProfile, JobListing, JobListingApplication
+from core.models import JobListing, JobListingApplication
 from accounts.models import Account
 
+class NestedAccountSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Account
+        fields = [
+            "username",
+            "email",
+            "role",
+        ]
+        read_only_fieds = [*fields]
+    
 
 class JobListingSerializer(serializers.ModelSerializer):
-
+    recruiter = NestedAccountSerializer(required=False)
+    
     def to_representation(self, instance):
         data = super().to_representation(instance)
         data.update({
@@ -20,6 +32,7 @@ class JobListingSerializer(serializers.ModelSerializer):
             "requirements",
             "min_educational_level",
             "salary_range",
+            "recruiter",
             "created_at",
             "updated_at",
         ]
@@ -38,7 +51,7 @@ class JobListingApplicationSerializer(serializers.ModelSerializer):
 
 
 class JobListingRetrieveSerializer(serializers.ModelSerializer):
-    applicants = JobListingApplicationSerializer(source='applications', many=True, read_only=True) # @TODO verificar 'applications' 
+    applicants = JobListingApplicationSerializer(source='applications', many=True, read_only=True)
     
     class Meta:
         model = JobListing
@@ -47,6 +60,7 @@ class JobListingRetrieveSerializer(serializers.ModelSerializer):
             "title",
             "requirements",
             "min_educational_level",
+            "recruiter"
             "created_at",
             "updated_at",
             "applicants"

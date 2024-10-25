@@ -37,6 +37,13 @@ class JobListingViewSet(viewsets.ModelViewSet):
            return JobListingApplicationSerializer
         return JobListingSerializer
     
+    def perform_create(self, serializer):
+        recruiter = self.request.user
+        serializer.save(recruiter=recruiter)
+        return super().perform_create(serializer)
+    
+    
+    
     # Enable applicants to apply for a job listing
     @action(
         detail=True,
