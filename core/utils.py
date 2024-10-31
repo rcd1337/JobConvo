@@ -1,5 +1,25 @@
 from .constants import SalaryRangeChoices, EducationChoices
 
+
+def count_montly_entries(model, year=None, month=None):
+    """
+    Counts the etotal number of entries in a given month of a specified model.
+    
+    If either year or month are not provided, counts all entries.
+    
+    Args:
+        model (Model): The model to count entries from.
+        year (int): The year to filter the entries by.
+        month (int): The month to filter the entries by.
+    
+    Returns:
+        int: The number of entries created in the period.
+    """
+    if not year or not month:
+        return model.objects.all().count()
+    return model.objects.filter(created_at__year=year, created_at__month=month).count()
+
+
 def calculate_applicant_ranking(
     applicant_educational_level,
     applicant_salary_range_expectation, 

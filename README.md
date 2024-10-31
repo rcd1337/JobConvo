@@ -35,11 +35,11 @@ Para popular database com dados iniciais:
 docker compose exec django python manage.py loaddata config/fixtures/fixtures.json
 ```
 ### front-end:
-Certifíque-see que está na pasta front-end (`cd front-end`)
+Certifíque-see que está na pasta front-end (`cd new-front-end`)
 
 rode `npm install --force`
 
-rode `npm run dev`
+rode `npm start`
 
 acesse a aplicação através da url:
 ```
