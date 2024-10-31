@@ -40,12 +40,20 @@ class JobListingSerializer(serializers.ModelSerializer):
 
 class JobListingApplicationSerializer(serializers.ModelSerializer):
     
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data.update({
+            "applicant_email": instance.applicant.email
+        })
+        return data
+    
     class Meta:
         model = JobListingApplication
         fields = [
             "id",
             "job_listing",
             "applicant",
+            "applicant_ranking",
             "created_at",
         ]
 

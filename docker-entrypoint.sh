@@ -7,11 +7,12 @@ if [ "$1" == "django" ]; then
       sleep 5
   done
 
-  set -e
+  # set -e
   shift
   exec "$@"
   
   python manage.py migrate
+  python manage.py collectstatic --noinput
   python manage.py runserver 0.0.0.0:8000
 
 fi

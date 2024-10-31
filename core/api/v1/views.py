@@ -4,6 +4,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError, APIException
 from rest_framework.decorators import action
+from django.db.models import Prefetch
+from core.utils import count_montly_entries
 from core.models import (
     JobListing,
     JobListingApplication,
@@ -18,7 +20,9 @@ from .serializers import (
 
 
 class JobListingViewSet(viewsets.ModelViewSet):
-    queryset = JobListing.objects.all()
+    queryset = JobListing.objects.prefetch_related(
+        Prefetch('applications', queryset=JobListingApplication.objects.all().order_by('-applicant_ranking'))
+    )
     
     def get_permissions(self):
         if self.action in ["create", "update", "partial_update", "destroy"]:
@@ -78,36 +82,35 @@ class JobListingViewSet(viewsets.ModelViewSet):
         )
 
 
-class ReportViewSet(generics.GenericAPIView):
+class ReportView(generics.GenericAPIView):
     serializer_class = ReportSerializer
     permission_classes = [IsAuthenticated]
     
     def get(self, request, *args, **kwargs):
+        
+        # Return total entries count.
+        if not request.query_params:
+            data = {
+                "job_listings_amount": count_montly_entries(JobListing),
+                "applications_amount": count_montly_entries(JobListingApplication)
+            }
+            serializer = self.get_serializer(data)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        
+        # Return given period entries count.
         year = request.query_params.get("year")
         month = request.query_params.get("month")
         
-        if not year and not month:
-            year = datetime.now().year
-            month = datetime.now().month
-        
-        # Validate both variables were informed in the request
-        if not year or not month:
-            raise APIException("You must inform year and month, e.g.: ...report/?year=2000&?month=11")
-
-        # Validate year and month
+        # Validate year and month.
         try:
             datetime(int(year), int(month), 1)
-        except ValueError:
-            raise APIException("Invalid date. Please provide a valid year(e.g.: 2000) and month (1-12).")
-        
-        job_listings_count = JobListing.objects.filter(created_at__year=year, created_at__month=month).count()
-        applications_count = JobListingApplication.objects.filter(created_at__year=year, created_at__month=month).count()
+        except (ValueError, TypeError):
+            raise APIException("Invalid date. Provide a valid year and month (e.g.: .../report/?year=2000&month=1).")
         
         data = {
-            "job_listings_amount": job_listings_count,
-            "applications_amount": applications_count
+            "job_listings_amount": count_montly_entries(model=JobListing, year=year, month=month),
+            "applications_amount": count_montly_entries(model=JobListingApplication, year=year, month=month)
         }
-
         serializer = self.get_serializer(data)
         
         return Response(serializer.data, status=status.HTTP_200_OK)
