@@ -1,3 +1,6 @@
+### Obs: As mudanças commitadas pós entrevista foram colocadas na branch "[pos-entrevista](https://github.com/rcd1337/JobConvo/tree/pos-entrevista)".
+Atentar-se p/ inicialização do novo front-end.
+
 ## tecnologias utilizadas:
 - **Python** 3.12 e **Django** 5.0.9
 - **Django REST framework** - api
